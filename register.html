@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="register.css">
+  <title>ユーザー登録画面はこちら</title>
+</head>
+<body>
+  <header>
+    <div class="header-logo">
+    <!-- ① -->
+      <a href="/">フォーム画面へ</a>
+      <a class="header-right" href="/login/">ログイン</a>
+    </div>
+   </header>
+
+<div>
+
+    <form th:action="@{/register/}" action="/register/" th:object="${registerDto}" method="post">
+
+        <h1>ユーザー登録</h1>
+
+        <div th:classappend="${#fields.hasErrors('name')}? 'has-error'">
+            <label for="name">アカウント名</label>
+
+            <div>
+                <input id="name" type="text" th:field="*{name}" name="name"/>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">error!</span>
+            </div>
+        </div>
+        <div th:classappend="${#fields.hasErrors('password')}? 'has-error'">
+            <label for="password">パスワード</label>
+
+            <div>
+                <input id="password" type="password" th:field="*{password}" name="password"/>
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">error!</span>
+            </div>
+        </div>
+        <input type="submit" value="新規登録"/>
+    </form>
+</div>
+</body>
+</html>
